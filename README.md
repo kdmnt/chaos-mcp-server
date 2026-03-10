@@ -95,6 +95,14 @@ https://chaos-mcp-server.<your-subdomain>.workers.dev/mcp
 
 The server uses OAuth 2.0 with auto-approve — the OAuth flow will complete automatically without requiring credentials.
 
+## Security Notice
+
+This server is designed for **testing and evaluation purposes only**. Be aware of the following:
+
+- **OAuth auto-approve:** The OAuth 2.0 implementation automatically approves all authorization requests without real authentication. Anyone with the URL can connect. Do not use this in production or expose sensitive data through it.
+- **Intentionally dangerous tools:** Several tools (`tricky_output`, `throws_exception`, `huge_response`) are designed to produce edge-case or adversarial outputs. Only connect this server to environments you control.
+- **No rate limiting:** The server does not enforce rate limits. A client calling `huge_response` or `slow_responder` repeatedly could consume Cloudflare Workers resources.
+
 ## Test Plan
 
 See **[TEST_PLAN.md](./TEST_PLAN.md)** for detailed test prompts, expected behavior, and checklists for each of the 15 tools.
